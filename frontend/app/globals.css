@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --zinc-50: 250 250 250;
+    --zinc-100: 244 244 245;
+    --zinc-200: 228 228 231;
+    --zinc-300: 212 212 216;
+    --zinc-400: 161 161 170;
+    --zinc-500: 113 113 122;
+    --zinc-600: 82 82 91;
+    --zinc-700: 63 63 70;
+    --zinc-800: 39 39 42;
+    --zinc-900: 24 24 27;
+    --zinc-950: 9 9 11;
+
+    --red-50: 254 242 242;
+    --red-100: 254 226 226;
+    --red-200: 254 202 202;
+    --red-300: 252 165 165;
+    --red-400: 248 113 113;
+    --red-500: 239 68 68;
+    --red-600: 220 38 38;
+    --red-700: 185 28 28;
+    --red-800: 153 27 27;
+    --red-900: 127 29 29;
+    --red-950: 69 10 10;
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--zinc-50);
+    --foreground: var(--zinc-950);
+
+    --card: var(--zinc-50);
+    --card-foreground: var(--zinc-950);
+
+    --popover: var(--zinc-50);
+    --popover-foreground: var(--zinc-950);
+
+    --primary: var(--zinc-950);
+    --primary-foreground: var(--zinc-50);
+
+    --secondary: var(--zinc-200);
+    --secondary-foreground: var(--zinc-950);
+
+    --muted: var(--zinc-200);
+    --muted-foreground: var(--zinc-500);
+
+    --accent: var(--zinc-200);
+    --accent-foreground: var(--zinc-950);
+
+    --destructive: var(--red-200);
+    --destructive-foreground: var(--red-950);
+
+    --border: var(--zinc-300);
+    --input: var(--zinc-200);
+    --ring: var(--zinc-950);
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: var(--zinc-950);
+    --foreground: var(--zinc-50);
+
+    --card: var(--zinc-950);
+    --card-foreground: var(--zinc-50);
+
+    --popover: var(--zinc-950);
+    --popover-foreground: var(--zinc-50);
+
+    --primary: var(--zinc-50);
+    --primary-foreground: var(--zinc-950);
+
+    --secondary: var(--zinc-800);
+    --secondary-foreground: var(--zinc-50);
+
+    --muted: var(--zinc-800);
+    --muted-foreground: var(--zinc-400);
+
+    --accent: var(--zinc-800);
+    --accent-foreground: var(--zinc-50);
+
+    --destructive: var(--red-700);
+    --destructive-foreground: var(--red-200);
+
+    --border: var(--zinc-700);
+    --input: var(--zinc-800);
+    --ring: var(--zinc-50);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    @apply font-mono;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  .custom-tweet-theme * {
+    @apply font-sans
+  }
+}
+
+.custom-tweet-theme .react-tweet-theme {
+  --tweet-body-font-size: 1rem;
+  --tweet-container-margin: 0;
+  --tweet-border: 1px solid rgb(var(--border));
+  --tweet-bg-color: rgb(var(--background));
+  --tweet-bg-color-hover: rgb(var(--accent));
+  --tweet-color-blue-secondary-hover: rgb(var(--accent));
+}
