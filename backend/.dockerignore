@@ -1,0 +1,17 @@
+__pycache__
+
+.dockerignore
+.env
+.git
+.pytest_cache
+.vscode
+
+*.dockerfile
+*.ipynb
+
+Dockerfile
+env
+onnx_model
+README.md
+tests
+venv

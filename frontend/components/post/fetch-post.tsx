@@ -1,8 +1,8 @@
 import { Post } from "@/lib/types";
 
 export async function fetchPost(documentId: string): Promise<{ data: Post[] }> {
-  const url = new URL(`http://172.30.1.47:8000/document?id=${documentId}`);
-  // const url = new URL(`http://100.109.20.91:8000/document?id=${documentId}`);
+  const baseUrl = window.location.origin;
+  const url = new URL(`/api/document?id=${documentId}`, baseUrl);
 
   try {
     const response = await fetch(url);

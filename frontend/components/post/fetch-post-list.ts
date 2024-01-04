@@ -35,8 +35,8 @@ export async function fetchPostList(
       count: count,
     });
 
-    const url = new URL(`http://172.30.1.47:8000/documents?${params}`);
-    // const url = new URL(`http://100.109.20.91:8000/documents?${params}`);
+    const baseUrl = window.location.origin;
+    const url = new URL(`/api/documents?${params}`, baseUrl);
 
     const response = await fetch(url);
 

@@ -164,7 +164,7 @@ export function Actions({ documentId, isRead, isBookmarked }: Actions) {
           )}
           mutationFn={
             curry(requestAction)(
-              new URL("http://172.30.1.47:8000/read"),
+              new URL(`/api/read`, window.location.origin),
               "POST",
             ) as MutationFunction
           }
@@ -185,7 +185,7 @@ export function Actions({ documentId, isRead, isBookmarked }: Actions) {
           )}
           mutationFn={
             curry(requestAction)(
-              new URL("http://172.30.1.47:8000/bookmark"),
+              new URL(`/api/bookmark`, window.location.origin),
               "POST",
             ) as MutationFunction
           }
@@ -234,7 +234,7 @@ function DeleteButton({ documentId }: { documentId: string }) {
             <button
               onClick={() => {
                 requestAction(
-                  new URL("http://172.30.1.47:8000/document"),
+                  new URL(`/api/document`, window.location.origin),
                   "DELETE",
                   {
                     id: documentId,

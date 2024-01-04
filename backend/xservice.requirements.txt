@@ -1,0 +1,8 @@
+beautifulsoup4
+grpcio
+grpcio-tools
+msgpack
+pydantic
+rich
+selenium
+toml

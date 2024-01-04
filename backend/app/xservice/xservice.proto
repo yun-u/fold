@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+service XService {
+  rpc FetchTweet(TweetRequest) returns (TweetResponse) {}
+}
+
+message TweetRequest {
+  string url = 1;
+}
+
+message Error {
+  string code = 1;
+  string message = 2;
+}
+
+message TweetResponse {
+  optional Error error = 1;
+  repeated bytes tweets = 2;
+}
