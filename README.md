@@ -2,9 +2,63 @@
 
 <img src="assets/logo.svg" width="256">
 
-_**Manage linked documents and utilize vector search.**_
+_Manage your collected documents and perform vector-based searches._
 
-## Features
+## Supported features
+
+- Web scraping to store text and metadata information
+- Vector-based text search and similar document search
+- Search by category, author, title, and content
+- Document read-marking, bookmarking, document linking, and backlinking
+
+## How to use
+
+1. **Clone the Repository**: Start by cloning the repository to your local machine.
+
+   ```bash
+   git clone https://github.com/yun-u/fold.git
+   cd fold
+   ```
+
+2. **Environment Setup**: Create a `.env` file in the root directory to store your environment variables.
+
+   ```bash
+   touch .env
+   ```
+
+   The example of `.env` file with necessary variables. This includes specifying the index name for Redis Search, ONNX model path, default Huggingface model ID, X user credentials, Papago API credentials, service hostnames, and the Arxiv directory to save PDF files.
+
+   ```
+   INDEX_NAME=idx
+   ONNX_MODEL_HOME=/app/onnx_model
+
+   DEFAULT_MODEL_ID=thenlper/gte-base
+
+   X_ID=YOUR_X_ID
+   X_PASSWORD=YOUR_X_PASSWORD
+
+   PAPAGO_ID=YOUR_PAPAGO_ID
+   PAPAGO_SECRET=YOUR_PAPAGO_SECRET
+
+   RABBITMQ_HOST=rabbitmq
+   REDIS_HOST=redis
+   XSERVICE_HOST=xservice
+
+   ARXIV_HOME=/arxiv
+   ```
+
+3. **Using the API**: To utilize the app's functionality, use the provided API endpoint. For instance, to embed a document from a URL, you can use a curl command like the following:
+
+   ```bash
+   curl -X POST \
+   -H "Content-Type: application/json"\
+   http://localhost/api/embed \
+   -d '{
+       "url": "https://arxiv.org/abs/1706.03762"
+   }'
+   ```
+
+## Demo
 
 The screenshot shows the main page of the interface. At the top, there is a filter bar that enables filtering based on various options. Below that, there is a search bar for vector searching. In the middle section, collected documents can be scrolled through vertically. Each document provides options to check linked and documents, mark as read, bookmark, and delete.
 
@@ -18,7 +72,7 @@ Displays documents that are similar to other documents based on cosine similarit
 
 <img src="assets/vector_search_document_page.png" width="1024">
 
-## How it Works?
+## How it Works
 
 ### Embed
 
@@ -53,8 +107,3 @@ RedisSearch has been used to implement vector search.
 ### Frontend
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Radix UI](https://img.shields.io/badge/radix%20ui-161618.svg?style=for-the-badge&logo=radix-ui&logoColor=white)
-
-## TODO
-
-- Use Docker
-- Use Celery to manage RabbitMQ
