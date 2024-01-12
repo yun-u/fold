@@ -40,7 +40,11 @@ def create_index(
     if redis_client is None:
         redis_client = Redis(connection_pool=redis_pool.pool)
 
-    config = AutoConfig.from_pretrained(Path(ONNX_MODEL_HOME, model_id))
+    if (onnx_model_path := Path(ONNX_MODEL_HOME, model_id)).exists():
+        config = AutoConfig.from_pretrained(onnx_model_path)
+    else:
+        config = AutoConfig.from_pretrained(model_id)
+
     embedding_dimension = config.hidden_size
 
     schema = (
@@ -96,7 +100,7 @@ class QueryModel(BaseModel):
     author: str = ""
     bookmarked: bool = False
     category: List[str] = Field(default_factory=list)
-    desc: bool = True  # Sort in descending order by created timestamp
+    desc: bool = True  # sort in descending order by created timestamp
     text: str = ""
     title: str = ""
     unread: bool = False
@@ -186,6 +190,7 @@ class QueryModel(BaseModel):
 
     def get_score(self, distance: str) -> float:
         if self.embedding() is not None:
+            # NOTE:
             # The embedding value is normalized to L2.
             # Therefore, the Inner Product(IP) value is between -1 and 1, just like Cosine Similarity.
             # But Redis already normalize distance to be between 0 and 1.
