@@ -47,7 +47,15 @@ _Manage your collected documents and perform vector-based searches._
    ARXIV_HOME=/arxiv
    ```
 
-3. **Using the API**: To utilize the app's functionality, use the provided API endpoint. For instance, to embed a document from a URL, you can use a curl command like the following:
+3. **Starting the Application**: Launch the application using Docker Compose. This will start all the necessary services defined in the `docker-compose.yml` file, including your application server, database, and any other dependent services. Make sure Docker is installed and running on your machine. Then, execute the following command in the root directory of the project:
+
+   ```bash
+   docker compose up
+   ```
+
+   This command initializes and starts all the containers required for the application. The services will be set up based on the configurations provided in the Docker Compose file and the `.env` file.
+
+4. **Using the API**: To utilize the app's functionality, use the provided API endpoint. For instance, to embed a document from a URL, you can use a curl command like the following:
 
    ```bash
    curl -X POST \
