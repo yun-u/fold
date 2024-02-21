@@ -96,11 +96,16 @@ class Fetcher(Task):
 
 
 @app.task(base=Fetcher, bind=True)
+def fetch(self: Fetcher, url: str) -> List[Document]:
+    return self.fetch(url)
+
+
+@app.task(base=Fetcher, bind=True)
 def fetch_and_embed(self: Fetcher, url: str, model_id: str) -> List[str]:
     try:
         if (urls := self.in_db(url, model_id)) is not None:
             return urls
         return self.fetch_and_embed(url, model_id)
     except Exception as e:
-        logging.error(e, exc_info=True, stack_info=True)
+        logging.error(f"[{url}] [{model_id}] {e}", exc_info=True, stack_info=True)
         return []

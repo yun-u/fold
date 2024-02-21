@@ -29,7 +29,10 @@ from pydantic import (
     constr,
 )
 from selenium import webdriver
-from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    StaleElementReferenceException,
+)
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webdriver import WebDriver
@@ -410,7 +413,10 @@ class X:
         if len(web_elements) == 0:
             return ""
 
-        web_elements[0].find_element(By.XPATH, "../..").click()
+        try:
+            web_elements[0].find_element(By.XPATH, "../..").click()
+        except ElementClickInterceptedException:
+            return ""
 
         quote_tweet_id = "/".join(
             urlparse(self.driver.current_url)

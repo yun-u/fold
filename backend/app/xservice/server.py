@@ -36,6 +36,7 @@ class XService(xservice_pb2_grpc.XServiceServicer):
             packed = [msgpack.packb(instance_to_dict(tweet)) for tweet in tweets]
             return xservice_pb2.TweetResponse(tweets=packed)
         except Exception as e:
+            logging.error(e, exc_info=True, stack_info=True)
             return xservice_pb2.TweetResponse(
                 error=xservice_pb2.Error(code="", message=str(e))
             )
@@ -67,7 +68,7 @@ class Server:
 if __name__ == "__main__":
     # python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. xservice.proto
     try:
-        server = Server(XService(headless=True, login=False, verbose=True), port=PORT)
+        server = Server(XService(headless=True, login=True, verbose=True), port=PORT)
         server.start()
     finally:
         server.close()
